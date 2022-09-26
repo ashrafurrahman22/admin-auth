@@ -16,7 +16,8 @@ const useMakeUser = (user) => {
             headers:{
                 "content-type" : "application/json"
             },
-            body:JSON.stringify({email:user?.user.email,name:user?.user.displayName})
+            body:JSON.stringify({email:user?.user.email})
+            // name:user?.user.displayName
         })
         .then(res => res.json())
         .then(data => localStorage.setItem("token",data.token))
