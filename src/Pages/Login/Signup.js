@@ -72,7 +72,7 @@ const Signup = () => {
     createUserWithEmailAndPassword(data.email,data.password)
     
     .then(()=> {
-     updateProfile({displayName:data.name})
+     updateProfile({displayName:data?.name})
      .then(async()=> {
        reset()
      })
@@ -108,7 +108,7 @@ const Signup = () => {
             <div>
               <form onSubmit={handleSubmit(onSubmit)}>
 
-                <div className="form-control w-96 max-w-xs">
+                {/* <div className="form-control w-96 max-w-xs">
                 <input
               type="text"
               placeholder="name"
@@ -120,7 +120,7 @@ const Signup = () => {
                 },
               })}
             />
-                </div>
+                </div> */}
 
                 <div  className="form-control w-96 max-w-xs">
                   <input 

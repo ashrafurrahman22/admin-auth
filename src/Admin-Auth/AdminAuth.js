@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import getToken from '../../../Hooks/getToken';
-import { useAuthState } from "react-firebase-hooks/auth"
-import auth from '../../../../firebase.init';
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from '../firebase.init';
+import getToken from '../Hooks/getToken';
 
 const AdminAuth = () => {
     const [user,loading,error] = useAuthState(auth)
@@ -12,7 +12,7 @@ const AdminAuth = () => {
 
 
     useEffect(()=> {
-        fetch(`https://protected-peak-92782.herokuapp.com/users/${user.email}`,getToken)
+        fetch(`http://localhost:5000/users/${user?.email}`,getToken)
         .then(res=>res.json())
         .then(data =>setAdmin(data.admin) )
       },[])
