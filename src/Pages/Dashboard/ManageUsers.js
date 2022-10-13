@@ -1,26 +1,40 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import SingleUser from './SingleUser';
 
 const ManageUsers = () => {
 
+  const [users, setUsers] = useState([]);
 
-  const [users, setUsers] = useState([])
   useEffect(()=>{
-    fetch(`http://localhost:5000/users`)
-    .then(res => res.json())
+    fetch("http://localhost:5000/users")
+    .then(res =>res.json())
     .then(data => setUsers(data))
-  }, [])
-
-  console.log(users)
+  },[users])
 
   return (
     <div>
-      <h2>This is Users</h2>
-      {/* {
-        users.map(user => <div>
-          <h2>{user.email}</h2>
-        </div> )
-      } */}
+        <div>
+        <div className="overflow-x-auto">
+  <table className="table w-full">
+    {/* <!-- head --> */}
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+    {
+          users.map(user=> <SingleUser
+          key={user._id}
+          user={user}
+          ></SingleUser> )
+        }
+    </tbody>
+  </table>
+</div>
+        </div>
+        
     </div>
   );
 };
